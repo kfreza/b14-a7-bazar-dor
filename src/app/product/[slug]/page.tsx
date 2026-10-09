@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
-import { connection } from "next/server";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import ProductDetail, { ProductDetailSkeleton } from "@/components/product-detail";
 import { getProductBySlug, getProducts } from "@/lib/api";
-import { auth } from "@/lib/auth";
+import { requireSession } from "@/lib/session";
 import type { Product } from "@/lib/types";
 
 export async function generateStaticParams() {
@@ -22,11 +20,7 @@ export async function generateMetadata({
 }
 
 async function ProtectedProduct({ product }: { product: Product }) {
-  await connection();
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) {
-    redirect(`/signin?redirect=${encodeURIComponent(`/product/${product.slug}`)}&reason=protected`);
-  }
+  await requireSession(`/product/${product.slug}`);
   return <ProductDetail product={product} />;
 }
 

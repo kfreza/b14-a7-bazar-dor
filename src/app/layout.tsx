@@ -29,7 +29,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={hindSiliguri.variable}
     >
-      <body className="flex min-h-screen flex-col overflow-x-hidden bg-base-200 font-sans text-base-content antialiased">
+      <body
+        suppressHydrationWarning
+        className="flex min-h-screen flex-col overflow-x-hidden bg-base-200 font-sans text-base-content antialiased"
+      >
         <Navbar />
         <PriceTicker />
         <main className="flex-1 pb-12">{children}</main>
