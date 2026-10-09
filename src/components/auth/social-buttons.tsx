@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { authClient, authErrorMessage } from "@/lib/auth-client";
+import { authClient, authErrorMessage, withAuthFlag } from "@/lib/auth-client";
 
 type Provider = "google" | "github";
 
@@ -11,10 +11,6 @@ const PROVIDERS: { id: Provider; label: string; icon: string }[] = [
   { id: "google", label: "Google দিয়ে চালিয়ে যান", icon: "/images/icon-google.svg" },
   { id: "github", label: "GitHub দিয়ে চালিয়ে যান", icon: "/images/icon-github.svg" },
 ];
-
-function withAuthFlag(path: string, flag: string) {
-  return `${path}${path.includes("?") ? "&" : "?"}auth=${flag}`;
-}
 
 export default function SocialButtons({ redirectTo = "/" }: { redirectTo?: string }) {
   const [pending, setPending] = useState<Provider | null>(null);

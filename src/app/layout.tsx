@@ -23,7 +23,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="bn" data-theme="bazardor" className={hindSiliguri.variable}>
+    <html
+      lang="bn"
+      data-theme="bazardor"
+      data-scroll-behavior="smooth"
+      className={hindSiliguri.variable}
+    >
       <body className="flex min-h-screen flex-col overflow-x-hidden bg-base-200 font-sans text-base-content antialiased">
         <Navbar />
         <PriceTicker />

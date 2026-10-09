@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import toast from "react-hot-toast";
-import { authClient, authErrorMessage, safeRedirect } from "@/lib/auth-client";
+import { authClient, authErrorMessage, safeRedirect, withAuthFlag } from "@/lib/auth-client";
 import FormField from "./form-field";
 import SocialButtons from "./social-buttons";
 
@@ -13,7 +13,6 @@ type Errors = Partial<Record<"email" | "password", string>>;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function SignInForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = safeRedirect(searchParams.get("redirect"));
   const isProtectedRedirect = searchParams.get("reason") === "protected";
@@ -52,9 +51,7 @@ export default function SignInForm() {
       return;
     }
 
-    toast.success("সফলভাবে সাইন ইন হয়েছে!");
-    router.push(redirectTo);
-    router.refresh();
+    window.location.assign(withAuthFlag(redirectTo, "welcome"));
   }
 
   return (

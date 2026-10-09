@@ -20,3 +20,7 @@ export function authErrorMessage(error: { code?: string; message?: string } | nu
 export function safeRedirect(value: string | null | undefined, fallback = "/") {
   return value && value.startsWith("/") && !value.startsWith("//") ? value : fallback;
 }
+
+export function withAuthFlag(path: string, flag: string) {
+  return `${path}${path.includes("?") ? "&" : "?"}auth=${flag}`;
+}
