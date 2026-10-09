@@ -6,12 +6,6 @@ export function toBnDigits(value: string | number): string {
   return String(value).replace(/\d/g, (d) => BN_DIGITS[Number(d)]);
 }
 
-export function parseBnNumber(value: string): number {
-  const latin = value.replace(/[০-৯]/g, (d) => String(BN_DIGITS.indexOf(d)));
-  const cleaned = latin.replace(/[^\d.-]/g, "");
-  return cleaned ? Number(cleaned) : NaN;
-}
-
 export function formatBnNumber(value: number): string {
   return toBnDigits(value.toLocaleString("en-IN"));
 }
