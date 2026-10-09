@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { getCategories } from "@/lib/api";
 import BnDate from "./bn-date";
 import CategoryNav, { CategoryChips } from "./category-nav";
+import UserMenu from "./user-menu";
 
 export default async function Navbar() {
   const categories = await getCategories();
@@ -20,14 +21,7 @@ export default async function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-2">
-          <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
-            সাইন ইন
-          </Link>
-          <Link href="/signup" className="btn btn-primary btn-sm sm:btn-md">
-            সাইন আপ
-          </Link>
-        </div>
+        <UserMenu />
       </div>
 
       <nav aria-label="ক্যাটাগরি" className="border-t border-base-200">

@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import PriceTicker from "@/components/price-ticker";
+import ToastProvider from "@/components/toast-provider";
 import "./globals.css";
 
 const hindSiliguri = Hind_Siliguri({
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <PriceTicker />
         <main className="flex-1 pb-12">{children}</main>
         <Footer />
+        <ToastProvider />
       </body>
     </html>
   );
