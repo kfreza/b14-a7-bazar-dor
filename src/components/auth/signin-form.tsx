@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import toast from "react-hot-toast";
 import { authClient, authErrorMessage, safeRedirect } from "@/lib/auth-client";
 import FormField from "./form-field";
@@ -14,9 +14,17 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function SignInForm() {
   const router = useRouter();
-  const redirectTo = safeRedirect(useSearchParams().get("redirect"));
+  const searchParams = useSearchParams();
+  const redirectTo = safeRedirect(searchParams.get("redirect"));
+  const isProtectedRedirect = searchParams.get("reason") === "protected";
   const [errors, setErrors] = useState<Errors>({});
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isProtectedRedirect) {
+      toast.error("এই পেজটি দেখতে আগে সাইন ইন করুন।", { id: "protected-route" });
+    }
+  }, [isProtectedRedirect, redirectTo]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

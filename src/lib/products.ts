@@ -1,4 +1,33 @@
-import type { Product } from "./types";
+import type { MarketPrice, Product } from "./types";
+
+export interface PriceSummary {
+  min: number;
+  max: number;
+  avg: number;
+  cheapest: MarketPrice;
+  priciest: MarketPrice;
+}
+
+export function marketAverage(market: MarketPrice): number {
+  return Math.round((market.min + market.max) / 2);
+}
+
+export function priceSummary(product: Product): PriceSummary | null {
+  const { markets } = product;
+  if (markets.length === 0) return null;
+
+  const cheapest = markets.reduce((a, b) => (b.min < a.min ? b : a));
+  const priciest = markets.reduce((a, b) => (b.max > a.max ? b : a));
+  const midpointTotal = markets.reduce((sum, m) => sum + (m.min + m.max) / 2, 0);
+
+  return {
+    min: cheapest.min,
+    max: priciest.max,
+    avg: Math.round(midpointTotal / markets.length),
+    cheapest,
+    priciest,
+  };
+}
 
 export type SortOrder = "default" | "asc" | "desc";
 
