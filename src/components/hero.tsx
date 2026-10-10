@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="rounded-3xl border border-base-300 bg-base-100">
       <div className="flex flex-col items-center gap-6 px-4 py-8 md:flex-row md:items-start md:justify-between md:py-10">
         <div className="flex w-full max-w-xl flex-col items-start gap-2">
-          <BnDate className="rounded-[14px] bg-primary/10 px-3 py-1 text-sm leading-5 font-medium text-primary" />
+          <BnDate className="rounded-[14px] bg-primary/10 px-3 py-1 text-sm leading-5 font-light text-primary" />
           <h1 className="text-[28px] leading-9 font-bold sm:text-4xl sm:leading-11.25">
             আজকের বাজারের দাম এক নজরে
           </h1>

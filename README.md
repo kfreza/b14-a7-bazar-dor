@@ -56,7 +56,7 @@ Price data comes from the BazarDor API (`/products`, `/categories`). If the API 
 
 ## 🚀 Run locally
 
-**Requirements:** Node.js 20 or newer and a MongoDB database (a free MongoDB Atlas cluster works).
+**Requirements:** Node.js 20.9 or newer and a MongoDB database (a free MongoDB Atlas cluster works).
 
 ```bash
 git clone https://github.com/kfreza/b14-a7-bazar-dor.git
