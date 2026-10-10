@@ -48,7 +48,7 @@ export default function UserMenu() {
         tabIndex={0}
         role="button"
         aria-label="ইউজার মেনু"
-        className="btn btn-ghost h-10 gap-2 px-2 sm:px-4"
+        className="btn btn-ghost h-10 gap-2 pr-2 pl-0 sm:pr-3"
       >
         <UserAvatar name={user.name} image={user.image} size={36} className="rounded-[10.5px]" />
         <span className="hidden max-w-28 truncate text-sm font-medium sm:inline">
